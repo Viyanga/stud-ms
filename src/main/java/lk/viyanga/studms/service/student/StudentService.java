@@ -13,7 +13,9 @@ import lk.viyanga.studms.repository.subject.StudentSubjectRepository;
 import lk.viyanga.studms.repository.subject.SubjectRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * @author - Anuradha Ranasinghe on 2020-07-19
@@ -59,11 +61,7 @@ public class StudentService {
         try {
             Optional<Student> byId = studentRepository.findById(studentId);
             if (!byId.isPresent()) throw new StudMSException("Student not found");
-            StudentDTO studentDTO = toStudent(byId.get());
-            Optional<Guardian> byStudentId = guardianRepository.findByStudentId(studentId);
-            byStudentId.ifPresent(guardian -> studentDTO.setGuardian(toGuardian(guardian)));
-            studentDTO.setSubjects(studentSubjectRepository.findByStudentId(studentId));
-            return studentDTO;
+            return toStudent(byId.get());
         } catch (Exception e) {
             e.printStackTrace();
             throw new StudMSException(e);
@@ -80,6 +78,9 @@ public class StudentService {
         studentDTO.setStudentNIC(student.getStudentNIC());
         studentDTO.setGender(student.getGender());
         studentDTO.setYear(student.getYear());
+        Optional<Guardian> byStudentId = guardianRepository.findByStudentId(student.getStudentId());
+        byStudentId.ifPresent(guardian -> studentDTO.setGuardian(toGuardian(guardian)));
+        studentDTO.setSubjects(studentSubjectRepository.findByStudentId(student.getStudentId()));
         return studentDTO;
     }
 
@@ -113,4 +114,8 @@ public class StudentService {
     }
 
 
+    public List<StudentDTO> findAll() {
+        List<Student> all = studentRepository.findAll();
+        return all.stream().map(this::toStudent).collect(Collectors.toList());
+    }
 }

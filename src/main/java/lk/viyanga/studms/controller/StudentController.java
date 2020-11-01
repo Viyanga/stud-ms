@@ -9,6 +9,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @author - Anuradha Ranasinghe on 2020-07-19
  * @project - stud-ms
@@ -39,5 +41,14 @@ public class StudentController extends AbstractController {
         StudentDTO byStudentId = studentService.findByStudentId(studentId);
         LOGGER.info("response  - student/findById | findByStudentId | studentId : {} | payload : {}", studentId, byStudentId);
         return sendSuccessResponse(byStudentId);
+    }
+
+    @GetMapping("/findAll")
+    public ResponseEntity<?> findAll() {
+        LOGGER.info("request   - student/findAll | findAll");
+        List<StudentDTO> response = studentService.findAll();
+        LOGGER.info("response  - student/findAll | findAll | payload size : {}", response.size());
+
+        return sendSuccessResponse(response);
     }
 }
