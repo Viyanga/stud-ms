@@ -1,14 +1,13 @@
 package lk.viyanga.studms.controller;
 
+import lk.viyanga.studms.dto.subject.StudentSubjectDTO;
 import lk.viyanga.studms.dto.subject.SubjectDTO;
 import lk.viyanga.studms.service.subject.SubjectService;
 import lk.viyanga.studms.util.AbstractController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,5 +34,22 @@ public class SubjectController extends AbstractController {
         LOGGER.info("response  - subject/findAll | findAll | payload : {}", all);
         return sendSuccessResponse(all);
     }
+
+    @PostMapping("add/mark")
+    public ResponseEntity<?> addMark(@RequestBody StudentSubjectDTO studentSubjectDTO) {
+        LOGGER.info("request   - add/mark | addMark | payload : {}", studentSubjectDTO);
+        subjectService.addMark(studentSubjectDTO);
+        LOGGER.info("response  - add/mark | addMark | success");
+        return sendSuccessResponse("Marks updated successfully");
+    }
+
+    @GetMapping("/findAll/test_marks")
+    public ResponseEntity<?> findAllTestMarks() {
+        LOGGER.info("request   - subject/test_marks | findAllTestMarks");
+        List<StudentSubjectDTO> all = subjectService.findAllTestMarks();
+        LOGGER.info("response  - subject/test_marks | findAllTestMarks | payload : {}", all);
+        return sendSuccessResponse(all);
+    }
+
 
 }
