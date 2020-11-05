@@ -48,7 +48,6 @@ public class StudentController extends AbstractController {
         LOGGER.info("request   - student/findAll | findAll");
         List<StudentDTO> response = studentService.findAll();
         LOGGER.info("response  - student/findAll | findAll | payload size : {}", response.size());
-
         return sendSuccessResponse(response);
     }
 }

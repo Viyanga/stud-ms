@@ -27,7 +27,7 @@ public class SubjectController extends AbstractController {
         this.subjectService = subjectService;
     }
 
-    @GetMapping("/findAll")
+    @GetMapping("/findAll/subjects")
     public ResponseEntity<?> findAll() {
         LOGGER.info("request   - subject/findAll | findAll");
         List<SubjectDTO> all = subjectService.findAll();
@@ -43,11 +43,11 @@ public class SubjectController extends AbstractController {
         return sendSuccessResponse("Marks updated successfully");
     }
 
-    @GetMapping("/findAll/test_marks")
+    @GetMapping("/findAll")
     public ResponseEntity<?> findAllTestMarks() {
-        LOGGER.info("request   - subject/test_marks | findAllTestMarks");
+        LOGGER.info("request   - subject/findAll | findAllTestMarks");
         List<StudentSubjectDTO> all = subjectService.findAllTestMarks();
-        LOGGER.info("response  - subject/test_marks | findAllTestMarks | payload : {}", all);
+        LOGGER.info("response  - subject/findAll | findAllTestMarks | payload : {}", all);
         return sendSuccessResponse(all);
     }
 
