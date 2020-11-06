@@ -15,6 +15,7 @@ import java.util.List;
  * @author - Anuradha Ranasinghe on 2020-07-19
  * @project - stud-ms
  **/
+@CrossOrigin
 @RestController
 @RequestMapping("student")
 public class StudentController extends AbstractController {

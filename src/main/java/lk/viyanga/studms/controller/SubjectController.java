@@ -15,6 +15,7 @@ import java.util.List;
  * @author - Anuradha Ranasinghe on 2020-09-19
  * @project - stud-ms
  **/
+@CrossOrigin
 @RestController
 @RequestMapping("subject")
 public class SubjectController extends AbstractController {
