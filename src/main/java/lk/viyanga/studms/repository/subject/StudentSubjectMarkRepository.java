@@ -20,4 +20,7 @@ public interface StudentSubjectMarkRepository extends JpaRepository<StudentSubje
     @Query("SELECT new lk.viyanga.studms.dto.subject.StudentSubjectDTO(s.studentSubjectTestId,s.studentName,s.subject,s.contactNumber,s.mark) FROM StudentSubjectMark s")
     List<StudentSubjectDTO> getAll();
 
+    @Query("SELECT new lk.viyanga.studms.dto.subject.StudentSubjectDTO(s.studentSubjectTestId,s.studentName,s.subject,s.contactNumber,s.mark) FROM StudentSubjectMark s WHERE s.studentSubjectTestId=?1")
+    StudentSubjectDTO findMarkById(int studentSubjectTestId);
+
 }

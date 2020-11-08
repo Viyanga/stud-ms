@@ -21,7 +21,7 @@ public class SubjectService {
     private final SubjectRepository subjectRepository;
     private final StudentSubjectMarkRepository studentSubjectMarkRepository;
 
-    public SubjectService(SubjectRepository subjectRepository, StudentSubjectMarkRepository  studentSubjectMarkRepository) {
+    public SubjectService(SubjectRepository subjectRepository, StudentSubjectMarkRepository studentSubjectMarkRepository) {
         this.subjectRepository = subjectRepository;
         this.studentSubjectMarkRepository = studentSubjectMarkRepository;
     }
@@ -56,5 +56,9 @@ public class SubjectService {
 
     public List<StudentSubjectDTO> findAllTestMarks() {
         return studentSubjectMarkRepository.getAll();
+    }
+
+    public StudentSubjectDTO findMarkById(int studentSubjectTestId) {
+        return studentSubjectMarkRepository.findMarkById(studentSubjectTestId);
     }
 }

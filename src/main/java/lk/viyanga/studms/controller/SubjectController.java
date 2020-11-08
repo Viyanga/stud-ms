@@ -6,6 +6,7 @@ import lk.viyanga.studms.service.subject.SubjectService;
 import lk.viyanga.studms.util.AbstractController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,6 +51,14 @@ public class SubjectController extends AbstractController {
         List<StudentSubjectDTO> all = subjectService.findAllTestMarks();
         LOGGER.info("response  - subject/findAll | findAllTestMarks | payload : {}", all);
         return sendSuccessResponse(all);
+    }
+
+    @GetMapping("/findMarkById")
+    public ResponseEntity<?> findMarkById(@Param("studentSubjectTestId") int studentSubjectTestId) {
+        LOGGER.info("request  - subject/findMarkById | findMarkById | studentSubjectTestId : {}", studentSubjectTestId);
+        StudentSubjectDTO response = subjectService.findMarkById(studentSubjectTestId);
+        LOGGER.info("response - subject/findMarkById | findMarkById | payload : {}", response);
+        return sendSuccessResponse(response);
     }
 
 
