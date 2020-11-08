@@ -6,12 +6,14 @@ package lk.viyanga.studms.dto.subject;
  **/
 public class StudentSubjectDTO {
 
+    private int studentSubjectTestId;
     private String studentName;
     private String subject;
     private String contactNumber;
     private int mark;
 
-    public StudentSubjectDTO(String studentName, String subject, String contactNumber, int mark) {
+    public StudentSubjectDTO(int studentSubjectTestId, String studentName, String subject, String contactNumber, int mark) {
+        this.studentSubjectTestId = studentSubjectTestId;
         this.studentName = studentName;
         this.subject = subject;
         this.contactNumber = contactNumber;
@@ -21,11 +23,20 @@ public class StudentSubjectDTO {
     @Override
     public String toString() {
         return "StudentSubjectDTO{" +
-                "studentName='" + studentName + '\'' +
+                "studentSubjectTestId=" + studentSubjectTestId +
+                ", studentName='" + studentName + '\'' +
                 ", subject='" + subject + '\'' +
                 ", contactNumber='" + contactNumber + '\'' +
                 ", mark=" + mark +
                 '}';
+    }
+
+    public int getStudentSubjectTestId() {
+        return studentSubjectTestId;
+    }
+
+    public void setStudentSubjectTestId(int studentSubjectTestId) {
+        this.studentSubjectTestId = studentSubjectTestId;
     }
 
     public String getStudentName() {
