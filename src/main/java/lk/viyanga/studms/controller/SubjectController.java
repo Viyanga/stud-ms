@@ -61,5 +61,13 @@ public class SubjectController extends AbstractController {
         return sendSuccessResponse(response);
     }
 
+    @GetMapping("/send_marks")
+    public ResponseEntity<?> sendMarks(@Param("studentSubjectTestId") int studentSubjectTestId) {
+        LOGGER.info("request  - subject/send_marks | sendMarks | studentSubjectTestId : {}", studentSubjectTestId);
+        subjectService.sendMarks(studentSubjectTestId);
+        LOGGER.info("response - subject/send_marks | sendMarks | sent");
+        return sendSuccessResponse("Email is sending");
+    }
+
 
 }
